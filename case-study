@@ -1,0 +1,11 @@
+Title: Automating Patch Management and Package Updates at DataiTCloud
+
+Introduction:
+
+In this case study, we will explore the scenario where you, a newly hired DevOps engineer at DataiTCloud, 
+are tasked with automating the patch management, package updates, and security patches for the Ubuntu platform used by the company. 
+Currently, these tasks are performed manually every Friday. Your manager wants you to create a bash script and configure a cron job to automate this process, 
+ensuring that it runs every hour, every day of the week throughout the year.
+
+
+You have 10 minutes to do this
