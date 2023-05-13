@@ -1,0 +1,54 @@
+#!/bin/bash
+
+# Check if running as root
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root."
+   exit 1
+fi
+
+while true; do
+    # Check if Git is installed, and install if necessary
+    if ! command -v git &> /dev/null; then
+        echo "Git is not installed. Installing Git..."
+        apt-get install -y git
+    fi
+
+    # Check if Docker is installed, and install if necessary
+    if ! command -v docker &> /dev/null; then
+        echo "Docker is not installed. Installing Docker..."
+        apt-get install -y docker.io
+    fi
+
+    # Start Docker daemon
+    echo "Starting Docker daemon..."
+    systemctl start docker
+
+    # Enable Docker daemon
+    echo "Enabling Docker daemon..."
+    systemctl enable docker
+
+    # Set Docker login credentials as environmental variables in the terminal where docker is running
+    export DOCKER_HUB_USERNAME="your_username"
+    export DOCKER_HUB_PASSWORD="your_password"
+
+    # Clone the source code repository using git 
+    git clone https://github.com/joshking1/Docker-Node.js.git
+
+    # Change directory to the one containing Dockerfile, and application source code 
+    cd Docker-Node.js
+    
+    # Build the Docker image
+    echo "Building the Docker image..."
+    docker build -t your_image_name .
+
+    # Login to Docker Hub using credentials
+    echo "Logging in to Docker Hub..."
+    echo "$DOCKER_HUB_PASSWORD" | docker login --username $DOCKER_HUB_USERNAME --password-stdin
+
+    # Push the Docker image to Docker Hub
+    echo "Pushing the Docker image to Docker Hub..."
+    docker push your_username/your_image_name
+
+    # Sleep for 2 weeks before running the script again
+    sleep 14d
+done
