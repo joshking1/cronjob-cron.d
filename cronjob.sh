@@ -11,3 +11,6 @@ crontab /tmp/cronjob
 
 # Clean up the temporary file
 rm /tmp/cronjob
+
+# Updating the system
+apt-get update -y
