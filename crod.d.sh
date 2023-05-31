@@ -8,3 +8,4 @@ echo "$cron_entry" | sudo tee /etc/cron.d/patch-management
 
 # Set appropriate permissions for the cron job file
 sudo chmod 644 /etc/cron.d/patch-management
+sudo nproc
