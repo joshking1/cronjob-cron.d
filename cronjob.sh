@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the cron job entry
-cron_entry="*/10 * * * * /root/patch-management.sh"
+cron_entry="*/20 * * * * /root/patch-management.sh"
 
 # Write the cron job entry to a temporary file
 echo "$cron_entry" > /tmp/cronjob
