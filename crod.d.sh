@@ -10,3 +10,4 @@ echo "$cron_entry" | sudo tee /etc/cron.d/patch-management
 sudo chmod 644 /etc/cron.d/patch-management
 sudo touch jean
 sudo nproc
+sudo whoami
